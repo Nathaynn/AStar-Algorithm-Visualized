@@ -10,7 +10,7 @@ public class DemoPanel extends JPanel {
     // SCREEN SETTINGS
     final int maxCol = 15;
     final int maxRow = 10;
-    final int nodeSize = 50;
+    final int nodeSize = 100;
     final int screenWidth = nodeSize * maxCol;
     final int screenHeight = nodeSize * maxRow;
 
@@ -58,6 +58,8 @@ public class DemoPanel extends JPanel {
         for (int i = 0; i < 9; i++) {
             setSolidNode(5, i);
         }
+
+        setCostOnNodes();
     }
     
     private void setStartNode(int col, int row) {
@@ -74,7 +76,41 @@ public class DemoPanel extends JPanel {
 
     private void setSolidNode(int col, int row) {
         node[col][row].setAsSolid();
+    }
 
+    private void setCostOnNodes() {
+        int col = 0;
+        int row = 0;
+
+        while (col < maxCol && row < maxRow) {
+
+            getCost(node[col][row]);
+
+            col++;
+            if (col == maxCol) {
+                col = 0;
+                row++;
+            }
+        }
+    }
+    private void getCost(Node node) {
+        // G COST (The distance from the start node)
+        int xDistance = Math.abs(node.col - startNode.col);
+        int yDistance = Math.abs(node.row - goalNode.row);
+        node.gCost = xDistance + yDistance;
+
+        // H COST (The distance from the goal node)
+        xDistance = Math.abs(node.col - startNode.col);
+        yDistance = Math.abs(node.row - goalNode.row);
+        node.hCost = xDistance + yDistance;
+
+        // F COST (total)
+        node.fCost = node.gCost + node.hCost;
+
+        if (node != startNode && node != goalNode){
+            String text = "F: " + node.fCost + "\nG: " + node.gCost + "\nH: " + node.hCost;
+            node.setText(text);
+        }
     }
 
 }

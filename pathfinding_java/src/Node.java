@@ -11,8 +11,6 @@ public class Node extends JButton implements ActionListener {
     // When the object of interest is clicked, ActionListener takes this into account and then does whatever action you code
     // Which is the @Overrided method 'actionPerformed'
 
-
-
     Node parent;
     int col;
     int row;
