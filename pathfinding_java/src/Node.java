@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
@@ -60,10 +59,27 @@ public class Node extends JButton implements ActionListener {
         setForeground(Color.white);
         solid = true;
     }
+
+    public void setAsOpen() {
+        open = true;
+    }
+
+    public void setAsChecked() {
+        if (start == false && goal == false) {
+            setBackground(Color.orange);
+            setForeground(Color.black);
+        }
+        checked = true;
+    }
+
+    public void setAsPath() {
+        setBackground(Color.green);
+        setForeground(Color.black);
+        }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        setBackground(Color.orange);
+        setBackground(Color.blue);
 
     }
-    
 }
