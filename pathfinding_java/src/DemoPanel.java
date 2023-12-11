@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -10,11 +9,11 @@ public class DemoPanel extends JPanel {
     // In simple terms, JPanel is a means to add components into a JFrame object
 
     // SCREEN SETTINGS
-    final int maxCol = 15;
-    final int maxRow = 10;
-    final int nodeSize = 70;
-    final int screenWidth = nodeSize * maxCol;
-    final int screenHeight = nodeSize * maxRow;
+    final static int maxCol = 15;
+    final static int maxRow = 10;
+    final static int nodeSize = 70;
+    final static int screenWidth = nodeSize * maxCol;
+    final static int screenHeight = nodeSize * maxRow;
 
     // NODE
     Node[][] node = new Node[maxCol][maxRow];  // 2D array of Node Objects

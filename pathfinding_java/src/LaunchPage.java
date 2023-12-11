@@ -1,8 +1,14 @@
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class LaunchPage {
 
     JFrame window = new JFrame();
+    JPanel mainPanel = new JPanel();
+    DemoPanel Astar = new DemoPanel();
+    Options options = new Options();
     //Instance Variable, creates a customizable window
 
     public LaunchPage() {
@@ -10,8 +16,12 @@ public class LaunchPage {
         // When the user closes the window, then the program is FULLY terminated.
         window.setResizable(false);
         // The user can't resize the window
-        window.add(new DemoPanel());
-        // Adds the DemoPanel into the window
+
+        mainPanel.add(Astar, BorderLayout.CENTER);
+        mainPanel.add(options, BorderLayout.WEST);
+        // Add other JPanels into a singular mainPanel to hold everything
+        window.add(mainPanel);
+        // Adds the MainPanel into the window
         
         window.pack();
         // Fits the window into its preferred size
