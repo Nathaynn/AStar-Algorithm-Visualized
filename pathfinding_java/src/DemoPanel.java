@@ -16,18 +16,21 @@ public class DemoPanel extends JPanel {
 
     Node[][] node = new Node[maxCol][maxRow];
     // 2D array of Node Objects
+    Node startNode, goalNode, currentNode;
+
 
     public DemoPanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        setPreferredSize(new Dimension(screenWidth, screenHeight));
         // Sets the size of the panel
         // Dimension takes in width/height arguments
         // The 'Dimension' class includes methods to set/retrieve those values
-        this.setBackground(Color.black);
+        setBackground(Color.black);
         // Sets the background to be black
-        this.setLayout(new GridLayout(maxRow, maxCol));
+        // On MAC_OS, the background won't be shown and the black outline is made by the Node border
+        setLayout(new GridLayout(maxRow, maxCol));
         // setLayout tells the JPanel component what kind of Layout Manger it will be using
         // GridLayout is the chosen Layout Manager, which organizes components in grids of rows and columns
-
+        
         // PLACE NODES
         int col = 0;
         int row = 0;
@@ -35,7 +38,7 @@ public class DemoPanel extends JPanel {
         while (col < maxCol && row < maxRow) {
             
             node[col][row] = new Node(col, row);
-            this.add(node[col][row]);
+            add(node[col][row]);
 
             col++;
             if (col == maxCol) {
@@ -47,5 +50,31 @@ public class DemoPanel extends JPanel {
         // I realized that the nodes work just like arrays, where it starts at [0][0] and the last node we see
         // in each row is [14][row]
 
+        // START AND GOAL NODE
+        setStartNode(2, 3);
+        setGoalNode(10, 9);
+
+        // SOLID NODE(S)
+        for (int i = 0; i < 9; i++) {
+            setSolidNode(5, i);
+        }
     }
+    
+    private void setStartNode(int col, int row) {
+        node[col][row].setAsStart();
+        startNode = node[col][row];
+        currentNode = startNode;
+    }
+
+    private void setGoalNode(int col, int row) {
+        node[col][row].setAsGoal();
+        goalNode = node[col][row];
+        
+    }
+
+    private void setSolidNode(int col, int row) {
+        node[col][row].setAsSolid();
+
+    }
+
 }
