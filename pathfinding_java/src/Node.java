@@ -1,10 +1,11 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
-public class Node extends JButton implements ActionListener {
+public class Node extends JButton{
     // When extending to JButton, it makes the class a interactable object to the user
     // When the object of interest is clicked, ActionListener takes this into account and then does whatever action you code
     // Which is the @Overrided method 'actionPerformed'
@@ -33,8 +34,6 @@ public class Node extends JButton implements ActionListener {
         setBorder(new LineBorder(Color.BLACK));
         setOpaque(true);
         // On Windows_OS these two lines of code aren't needed, but since I am on Mac I use it to show the outline grid
-        addActionListener(this);
-        // When clicked, does actionPerformed
     }
 
     // Distincts the node that is the start point
@@ -75,10 +74,4 @@ public class Node extends JButton implements ActionListener {
         setBackground(Color.green);
         setForeground(Color.black);
         }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        setBackground(Color.blue);
-
-    }
 }
