@@ -51,8 +51,7 @@ public class DemoPanel extends JPanel {
                 row++;
             }
         }
-
- /*        // Personal thought: I was confused on how the last node was being place for each row, but
+        // Personal thought: I was confused on how the last node was being place for each row, but
         // I realized that the nodes work just like arrays, where it starts at [0][0] and the last node we see
         // in each row is [14][row]
 
@@ -74,9 +73,8 @@ public class DemoPanel extends JPanel {
         }
 
         completePath();
-*/   
     }
-
+    
     private void setStartNode(int col, int row) {
         node[col][row].setAsStart();
         startNode = node[col][row];
