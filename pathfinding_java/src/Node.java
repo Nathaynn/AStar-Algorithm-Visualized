@@ -37,6 +37,16 @@ public class Node extends JButton implements ActionListener {
         // When clicked, does actionPerformed
     }
 
+    public void setAsRestart() {
+        setBackground(Color.white);
+        setForeground(Color.black);
+        setText("<html> F: "  + fCost + "<br> G: " + gCost + "<br> H: " + hCost);
+        start = false;
+        goal = false;
+        solid = false;
+        open = false;
+        checked = false;
+    }
     // Distincts the node that is the start point
     public void setAsStart() {
         setBackground(Color.blue);
@@ -76,9 +86,26 @@ public class Node extends JButton implements ActionListener {
         setForeground(Color.black);
         }
 
+
+    public void updateNode() {
+        if (Options.isSolid) {
+            DemoPanel.setSolidNode(col, row);
+        }
+        else if (Options.isOpen) {
+            DemoPanel.setFreeNode(col, row);
+        }
+        else if (Options.isStart) {
+            DemoPanel.setGoalNode(col, row);
+        }
+        else if (Options.isGoal) {
+            DemoPanel.setGoalNode(col, row);
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        setBackground(Color.blue);
-
+        System.out.println("X: " + this.col + ", Y: " + this.row);
+        updateNode();
     }
 }

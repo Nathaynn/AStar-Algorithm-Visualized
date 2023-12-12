@@ -1,11 +1,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class DemoPanel extends JPanel {
+public class DemoPanel extends JPanel implements ActionListener {
     // In simple terms, JPanel is a means to add components into a JFrame object
 
     // SCREEN SETTINGS
@@ -64,6 +66,9 @@ public class DemoPanel extends JPanel {
             setSolidNode(5, i);
         }
 
+        node[5][2].setAsRestart();
+        node[5][9].setAsSolid();
+
         // SET COST
         AStarAlgorithm.setCostOnNodes();
 
@@ -73,24 +78,35 @@ public class DemoPanel extends JPanel {
         }
 
         completePath();
+
+        
     }
     
-    private void setStartNode(int col, int row) {
+    public static void setStartNode(int col, int row) {
+        if (startNode != null) {
+            node[startNode.col][startNode.row].setAsRestart();
+        }
         node[col][row].setAsStart();
         startNode = node[col][row];
         currentNode = startNode;
     }
 
-    private void setGoalNode(int col, int row) {
+    public static void setGoalNode(int col, int row) {
+        if (goalNode != null) {
+            node[goalNode.col][goalNode.row].setAsRestart();
+        }
         node[col][row].setAsGoal();
         goalNode = node[col][row];
         
     }
 
-    private void setSolidNode(int col, int row) {
+    public static void setSolidNode(int col, int row) {
         node[col][row].setAsSolid();
     }
 
+    public static void setFreeNode(int col, int row) {
+        node[col][row].setAsRestart();
+    }
     public static void openNode(Node node) {
         // If node is open, then set 'open' to true and add to open list
         if (!node.open && !node.checked && !node.solid) {
@@ -107,5 +123,10 @@ public class DemoPanel extends JPanel {
             currentNode.setAsPath();
             currentNode = currentNode.parent;
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 }
