@@ -66,8 +66,6 @@ public class DemoPanel extends JPanel implements ActionListener {
             setSolidNode(5, i);
         }
 
-        node[5][2].setAsRestart();
-        node[5][9].setAsSolid();
 
         // SET COST
         AStarAlgorithm.setCostOnNodes();
@@ -75,10 +73,14 @@ public class DemoPanel extends JPanel implements ActionListener {
         // TEST CODE 
         while (!goalReached) {
             AStarAlgorithm.search();
+            if (openList.size() == 0) {
+                break;
+            }
         }
 
-        completePath();
-
+        if (goalReached) {
+            completePath();
+        }
         
     }
     

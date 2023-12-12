@@ -61,6 +61,11 @@ public class AStarAlgorithm {
             if (col - 1 >= 0 ) {
                 DemoPanel.openNode(DemoPanel.node[col - 1][row]); // West Node
             }
+            
+            //If there is no path, then return 
+            if (DemoPanel.openList.size() == 0) {
+                return;
+            }
 
             // Algorithm for finding the best node
             int bestNodeIndex = 0;
