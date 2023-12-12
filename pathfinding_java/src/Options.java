@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -13,6 +14,7 @@ public class Options extends JPanel implements ActionListener{
     Font font = new Font("Consolas", Font.PLAIN, 20);
     public Options() {
         setPreferredSize(new Dimension(DemoPanel.screenWidth/3, DemoPanel.screenHeight));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         // Size of Panel
 
         JCheckBox solids = new JCheckBox();
