@@ -56,32 +56,6 @@ public class DemoPanel extends JPanel implements ActionListener {
         // Personal thought: I was confused on how the last node was being place for each row, but
         // I realized that the nodes work just like arrays, where it starts at [0][0] and the last node we see
         // in each row is [14][row]
-
-        // START AND GOAL NODE
-        setStartNode(2, 3);
-        setGoalNode(10, 9);
-
-        // SOLID NODE(S)
-        for (int i = 0; i < 9; i++) {
-            setSolidNode(5, i);
-        }
-
-
-        // SET COST
-        AStarAlgorithm.setCostOnNodes();
-
-        // TEST CODE 
-        while (!goalReached) {
-            AStarAlgorithm.search();
-            if (openList.size() == 0) {
-                break;
-            }
-        }
-
-        if (goalReached) {
-            completePath();
-        }
-        
     }
     
     public static void setStartNode(int col, int row) {
@@ -107,7 +81,14 @@ public class DemoPanel extends JPanel implements ActionListener {
     }
 
     public static void setFreeNode(int col, int row) {
+        if (node[col][row] == startNode) {
+            startNode = null;
+        }
+        else if (node[col][row] == goalNode) {
+            goalNode = null;
+        }
         node[col][row].setAsRestart();
+
     }
     public static void openNode(Node node) {
         // If node is open, then set 'open' to true and add to open list
@@ -119,7 +100,7 @@ public class DemoPanel extends JPanel implements ActionListener {
         }
     }
 
-    private void completePath() {
+    public static void completePath() {
         currentNode = currentNode.parent; // currentNode is at 
         while (currentNode.parent != null) {
             currentNode.setAsPath();
@@ -127,6 +108,62 @@ public class DemoPanel extends JPanel implements ActionListener {
         }
     }
 
+    public static void updater() {
+        if (startNode != null && goalNode != null) {
+        
+            if (goalReached) {
+                openList = new ArrayList<>();
+                checkedList = new ArrayList<>();
+                int x = 0;
+                int y = 0;
+                while (x < maxCol && y < maxRow) {
+                    Node nodey = node[x][y];
+                    if (!nodey.solid) {
+                        node[x][y].setAsRestart();
+                    }
+                    x++;
+                    if (x == maxCol) {
+                        x = 0;
+                        y++;
+                    }
+                }
+                node[goalNode.col][goalNode.row].setAsGoal();
+                node[startNode.col][startNode.row].setAsStart();
+                goalReached = false;
+            }
+
+            // Update costs on nodes
+            AStarAlgorithm.setCostOnNodes();
+            
+            // Compute path
+            while (!goalReached) {
+                AStarAlgorithm.search();
+                if (openList.size() == 0) {
+                    break;
+                }
+            }
+            
+            // Show green path IF a path is found
+            if (goalReached) {
+                completePath();
+            }
+
+        }
+    }
+
+    public static void boardWiper() {
+        int x = 0;
+        int y = 0;
+        while (x < maxCol && y < maxRow) {
+            node[x][y].setAsRestart();
+            x++;
+            
+            if (x == maxCol){
+                x = 0;
+                y++;
+            }
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         

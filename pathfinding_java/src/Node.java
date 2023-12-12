@@ -40,7 +40,7 @@ public class Node extends JButton implements ActionListener {
     public void setAsRestart() {
         setBackground(Color.white);
         setForeground(Color.black);
-        setText("<html> F: "  + fCost + "<br> G: " + gCost + "<br> H: " + hCost);
+        parent= null;
         start = false;
         goal = false;
         solid = false;
@@ -108,5 +108,6 @@ public class Node extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("X: " + this.col + ", Y: " + this.row);
         updateNode();
+        DemoPanel.updater();
     }
 }
