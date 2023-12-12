@@ -88,16 +88,17 @@ public class Node extends JButton implements ActionListener {
 
 
     public void updateNode() {
-        if (Options.isSolid) {
+
+        if (OptionsPanel.isSolid) {
             DemoPanel.setSolidNode(col, row);
         }
-        else if (Options.isOpen) {
+        else if (OptionsPanel.isOpen) {
             DemoPanel.setFreeNode(col, row);
         }
-        else if (Options.isStart) {
+        else if (OptionsPanel.isStart) {
             DemoPanel.setGoalNode(col, row);
         }
-        else if (Options.isGoal) {
+        else if (OptionsPanel.isGoal) {
             DemoPanel.setGoalNode(col, row);
         }
     }

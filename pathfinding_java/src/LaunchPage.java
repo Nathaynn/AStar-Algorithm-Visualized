@@ -8,7 +8,7 @@ public class LaunchPage {
     JFrame window = new JFrame();
     JPanel mainPanel = new JPanel();
     DemoPanel Astar = new DemoPanel();
-    Options options = new Options();
+    OptionsPanel options = new OptionsPanel();
     //Instance Variable, creates a customizable window
 
     public LaunchPage() {
