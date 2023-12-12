@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 public class OptionsPanel extends JPanel implements ActionListener{
@@ -28,22 +27,22 @@ public class OptionsPanel extends JPanel implements ActionListener{
 
         add(setOpen);
         components.add(setOpen);
-        isOpen = setOpen.clicked;
+        setOpen.addActionListener(this);
         // Checkbox for opening nodes
 
         add(solids);
         components.add(solids);
-        isSolid = solids.clicked;
+        solids.addActionListener(this);
         // Checkbox for selecting solids
 
         add(goalBox);
         components.add(goalBox);
-        isGoal = goalBox.clicked;
+        goalBox.addActionListener(this);
         // Checkbox for selecting goal
 
         add(startBox);
         components.add(startBox);
-        isStart = startBox.clicked;
+        startBox.addActionListener(this);
         // Checkbox for selecting goal
 
     }
@@ -58,7 +57,9 @@ public class OptionsPanel extends JPanel implements ActionListener{
         ((Options) e.getSource()).setSelected(true);
         ((Options) e.getSource()).clicked = true;
 
-
-
+        isOpen = setOpen.clicked;
+        isSolid = solids.clicked;
+        isGoal = goalBox.clicked;
+        isStart = startBox.clicked;
     }
 }

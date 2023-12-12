@@ -96,7 +96,7 @@ public class Node extends JButton implements ActionListener {
             DemoPanel.setFreeNode(col, row);
         }
         else if (OptionsPanel.isStart) {
-            DemoPanel.setGoalNode(col, row);
+            DemoPanel.setStartNode(col, row);
         }
         else if (OptionsPanel.isGoal) {
             DemoPanel.setGoalNode(col, row);
