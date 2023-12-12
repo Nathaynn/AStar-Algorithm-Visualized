@@ -112,25 +112,11 @@ public class DemoPanel extends JPanel implements ActionListener {
         if (startNode != null && goalNode != null) {
         
             if (goalReached) {
-                openList = new ArrayList<>();
-                checkedList = new ArrayList<>();
-                int x = 0;
-                int y = 0;
-                while (x < maxCol && y < maxRow) {
-                    Node nodey = node[x][y];
-                    if (!nodey.solid) {
-                        node[x][y].setAsRestart();
-                    }
-                    x++;
-                    if (x == maxCol) {
-                        x = 0;
-                        y++;
-                    }
-                }
+                boardWiperSolids();
+            }
                 node[goalNode.col][goalNode.row].setAsGoal();
                 node[startNode.col][startNode.row].setAsStart();
                 goalReached = false;
-            }
 
             // Update costs on nodes
             AStarAlgorithm.setCostOnNodes();
@@ -149,21 +135,31 @@ public class DemoPanel extends JPanel implements ActionListener {
             }
 
         }
+        else if (startNode != null && goalNode == null) {
+            boardWiperSolids();
+            node[startNode.col][startNode.row].setAsStart();
+        }
+        else if (startNode == null && goalNode != null) {
+            boardWiperSolids();
+            node[goalNode.col][goalNode.row].setAsGoal();
+        }
     }
 
-    public static void boardWiper() {
+    public static void boardWiperSolids() {
         int x = 0;
         int y = 0;
         while (x < maxCol && y < maxRow) {
+            Node nodey = node[x][y];
+            if (!nodey.solid) {
             node[x][y].setAsRestart();
+            }
             x++;
-            
-            if (x == maxCol){
+            if (x == maxCol) {
                 x = 0;
                 y++;
             }
         }
-    }
+}
     @Override
     public void actionPerformed(ActionEvent e) {
         
