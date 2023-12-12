@@ -13,7 +13,7 @@ public class DemoPanel extends JPanel implements ActionListener {
     // SCREEN SETTINGS
     final static int maxCol = 15;
     final static int maxRow = 10;
-    final static int nodeSize = 70;
+    final static int nodeSize = 50;
     final static int screenWidth = nodeSize * maxCol;
     final static int screenHeight = nodeSize * maxRow;
 
