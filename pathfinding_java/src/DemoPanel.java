@@ -112,6 +112,8 @@ public class DemoPanel extends JPanel implements ActionListener {
         if (startNode != null && goalNode != null) {
         
             if (goalReached) {
+                openList = new ArrayList<>();
+                checkedList = new ArrayList<>();
                 boardWiperSolids();
             }
                 node[goalNode.col][goalNode.row].setAsGoal();
