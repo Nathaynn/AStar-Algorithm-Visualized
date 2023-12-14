@@ -113,11 +113,11 @@ public class DemoPanel extends JPanel implements ActionListener {
         
             if (goalReached) {
                 boardWiperSolids();
+            }
                 node[goalNode.col][goalNode.row].setAsGoal();
                 node[startNode.col][startNode.row].setAsStart();
                 goalReached = false;
-            }
-            
+
             // Update costs on nodes
             AStarAlgorithm.setCostOnNodes();
             
