@@ -135,6 +135,9 @@ public class DemoPanel extends JPanel implements ActionListener {
             if (goalReached) {
                 completePath();
             }
+            else {
+                goalReached = true;
+            }
 
         }
         else if (startNode != null && goalNode == null) {
